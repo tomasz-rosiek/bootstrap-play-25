@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.play.bootstrap
 
-import play.api.http.HttpFilters
 import play.api.inject.Binding
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.crypto.{ApplicationCrypto, ApplicationCryptoDI}
@@ -29,7 +28,6 @@ class FrontendModule extends BootstrapModule {
 
   override def bindings(environment: Environment, configuration: Configuration): Seq[Binding[_]] =
     super.bindings(environment, configuration) ++ Seq(
-      bind[HttpFilters].to[FrontendFilters],
       bind[AuditFilter].to[FrontendAuditFilter],
       bind[SessionCookieCrypto].toProvider[SessionCookieCryptoProvider],
       bind[ApplicationCrypto].to[ApplicationCryptoDI],

@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.play.bootstrap
 
-import play.api.http.HttpFilters
 import play.api.inject.Binding
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.play.bootstrap.filters.AuditFilter
@@ -25,7 +24,6 @@ import uk.gov.hmrc.play.bootstrap.filters.microservice.{DefaultMicroserviceAudit
 class MicroserviceModule extends BootstrapModule {
   override def bindings(environment: Environment, configuration: Configuration): Seq[Binding[_]] =
     super.bindings(environment, configuration) ++ Seq(
-    bind[HttpFilters].to[MicroserviceFilters],
     bind[AuditFilter].to[MicroserviceAuditFilter],
     bind[MicroserviceAuditFilter].to[DefaultMicroserviceAuditFilter]
   )
